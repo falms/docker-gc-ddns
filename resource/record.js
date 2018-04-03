@@ -16,7 +16,7 @@ function authorize(req, res, next) {
   }
 }
 
-exports.post = function(req, res, next) {
+exports.get = function(req, res, next) {
   if (!authorize(req, res, next)) {
     return;
   }
