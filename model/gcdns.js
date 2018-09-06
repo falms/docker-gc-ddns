@@ -1,18 +1,17 @@
 'use strict';
 
-const config = require('config').config.googleCloud;
 const google = require('googleapis');
 
 
 function GcDnsClient() {
   this.dnsClient = null;
-  this.FQDNSuffix = '.' + config.dns.domain + '.';
+  this.FQDNSuffix = '.' + process.env.DOMAIN + '.';
 }
 GcDnsClient.prototype = {
   baseParams: function() {
     return {
-        managedZone: config.dns.zone,
-        project: config.project
+        managedZone: process.env.ZONE,
+        project: process.env.PROJECT
       };
   },
 
@@ -81,7 +80,7 @@ GcDnsClient.prototype = {
           'https://www.googleapis.com/auth/cloud-platform'
         ];
 
-        const key = require(config.authKeyJsonFile);
+        const key = JSON.parse(process.env.KEYJSON);
 
         const jwtClient = new google.auth.JWT(key.client_email, null, key.private_key, API_SCOPES, null);
         jwtClient.authorize((err, tokens) => {

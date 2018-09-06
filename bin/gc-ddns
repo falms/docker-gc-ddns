@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-const config = require('config').config;
 const record = require('../model/record');
 const GcDnsClient = require('../model/gcdns');
 const CommonUtil = require('../util/common');
@@ -31,7 +30,7 @@ program
       return;
     }
 
-    const recordTtl = parseInt(ttl || config.ttl, 10);
+    const recordTtl = parseInt(ttl || process.env.TTL, 10);
     if (isNaN(recordTtl)) {
       console.error('Invalid TTL');
       return;

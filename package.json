@@ -23,7 +23,6 @@
   "homepage": "https://github.com/tilfin/gc-ddns#readme",
   "dependencies": {
     "commander": "^2.9.0",
-    "config": "^1.21.0",
     "googleapis": "^2.1.7",
     "js-yaml": "^3.6.1",
     "restify": "^4.1.1"

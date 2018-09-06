@@ -1,4 +1,0 @@
-config:
-  app:
-    port: 8080
-  ttl: 300

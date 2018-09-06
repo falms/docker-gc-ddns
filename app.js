@@ -1,6 +1,5 @@
 'use strict';
 
-const config = require('config').config;
 const restify = require('restify');
 const resource = require('./resource');
 
@@ -15,7 +14,7 @@ server.use(restify.bodyParser({ mapParams: true }));
 resource(server);
 
 if (!module.parent) {
-  const port = process.env.PORT || config.app.port;
+  const port = process.env.PORT;
   server.listen(port, "0.0.0.0");
   console.log("Start API Service port: %d", port);
 }

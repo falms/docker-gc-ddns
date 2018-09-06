@@ -1,14 +1,13 @@
 'use strict';
 
 const restify = require('restify');
-const config = require('config').config;
 const CommonUtil = require('../util/common');
 const record = require('../model/record');
 
 
 function authorize(req, res, next) {
   const apiKey = req.params.key;
-  if (apiKey == config.app.apiKey) {
+  if (apiKey == process.env.APIKEY) {
     return true;
   } else {
     next(new restify.errors.InvalidCredentialsError("Invaild API Key"));
@@ -35,7 +34,7 @@ exports.get = function(req, res, next) {
     return;
   }
 
-  const recordTtl = parseInt(req.params.ttl || config.ttl, 10);
+  const recordTtl = parseInt(req.params.ttl || process.env.TTL, 10);
   if (isNaN(recordTtl)) {
     next(new restify.errors.BadRequestError('Invalid TTL'));
     return;
